@@ -1,4 +1,4 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 interface FilterComponent {
     searchTerm: string,
@@ -11,20 +11,18 @@ export const Filter = ({ searchTerm, handleChange, handleKeyUp, handleSubmit }: 
 
     return(
         <Form onSubmit={handleSubmit}>
-            <Row className="mb-3">
-                <Form.Group as={Col} md="4" controlId="validationCustom01">
-                    <Form.Label>Search Value</Form.Label>
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Search by some value"
-                        value={searchTerm}
-                        onChange={handleChange}
-                        onKeyUp={handleKeyUp}
-                    />
-                    <Button type="submit">Search</Button>
-                </Form.Group>  
-            </Row>
+            <Form.Group controlId="validationCustom01" className="col-md-12">
+                <Form.Label>Search Value</Form.Label>
+                <Form.Control
+                    required
+                    type="text"
+                    placeholder="Search by some value"
+                    value={searchTerm}
+                    onChange={handleChange}
+                    onKeyUp={handleKeyUp}
+                />
+                <Button type="submit" style={{ marginTop: "5px" }}>Search</Button>
+            </Form.Group> 
         </Form>
     )
 }

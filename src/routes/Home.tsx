@@ -1,9 +1,7 @@
-import { Book } from "../components/books"
-
 export const Home = () => {
     return (
         <div className="container">
-            <Book />
+            <h1>Home</h1>
         </div>
     )
 }

@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { Filter } from "./components/Filter";
-import { TableResult } from "./components/TableResult";
-import { DataItem } from "./types";
-import { searchApi } from "../../services/pages/books-services";
+
+import { searchApi } from "../services/pages/books-services";
+import { Col, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Filter } from "../components/books/components/Filter";
+import { TableResult } from "../components/books/components/TableResult";
+import { DataItem } from "../components/books/types";
 
 export function Book () {
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -15,12 +18,12 @@ export function Book () {
         } catch (error) {
           console.error('Error fetching search results:', error);
         }
-      }, []);
+    }, []);
     
 
-      useEffect(() => {
+    useEffect(() => {
         fetchData(searchTerm);
-      }, [fetchData, searchTerm]);
+    }, [fetchData, searchTerm]);
 
 
 
@@ -55,10 +58,17 @@ export function Book () {
 
     return (
         <div className="container">
-            <Filter searchTerm={searchTerm}
-                handleChange={handleChange} 
-                handleKeyUp={handleKeyUp}
-                handleSubmit={handleSubmit}/>
+            <Row style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Col md="6">
+                    <Filter searchTerm={searchTerm}
+                        handleChange={handleChange} 
+                        handleKeyUp={handleKeyUp}
+                        handleSubmit={handleSubmit}/>
+                </Col>
+                <Col md="3">
+                    <NavLink className="btn btn-primary" to="new">New Book</NavLink>
+                </Col>
+            </Row>
             <TableResult searchResults={searchResults}/>
         </div>
     )
